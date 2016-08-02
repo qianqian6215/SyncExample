@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">小原子同步器</string>
-    <string name="no_account">还没有登陆喔!</string>
+
+    <string name="app_name">SyncExample</string>
+    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="account_label">小原子</string>
-    <string name="title_activity_login">LoginActivity</string>
-    <string name="login_name" >账户名</string>
-    <string name="login_password">密码</string>
-    <string name="login_submit">登陆</string>
-    <string name="login_content_error">需要补充完整登陆信息！</string>
-    <string name="account_type">xiaoyuanzi.cc.AccountType</string>
+
 </resources>
