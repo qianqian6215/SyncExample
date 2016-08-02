@@ -1,5 +1,5 @@
 <account-authenticator xmlns:android="http://schemas.android.com/apk/res/android"
-    android:accountType = "@string/account_type"
+    android:accountType = "xiaoyuanzi.cc.AccountType"
     android:icon = "@drawable/ic_launcher"
     android:smallIcon = "@drawable/ic_launcher"
     android:label="@string/account_label"

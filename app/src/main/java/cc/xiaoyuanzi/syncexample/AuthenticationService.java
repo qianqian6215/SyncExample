@@ -13,7 +13,6 @@ import android.os.IBinder;
 import android.os.IInterface;
 import android.os.Parcel;
 import android.os.RemoteException;
-import android.util.Log;
 
 import java.io.FileDescriptor;
 
@@ -45,17 +44,12 @@ public class AuthenticationService extends Service {
         @Override
         public Bundle addAccount(AccountAuthenticatorResponse accountAuthenticatorResponse, String s, String s2, String[] strings, Bundle bundle) throws NetworkErrorException {
 
-//            String name = "cici";
-//            String type = "xiaoyuanzi.cc.AccountType";
-//            String password = "123456";
-//            Account account = new Account(name,type);
-//            AccountManager.get(AuthenticationService.this).addAccountExplicitly(account,password,null);
-            Log.d("eee", (bundle==null?"empty":bundle.toString()));
-            Bundle ret = new Bundle();
-            Intent intent=new Intent(AuthenticationService.this,LoginActivity.class);
-            //intent.putExtra(AccountManager.KEY_ACCOUNT_AUTHENTICATOR_RESPONSE, response);
-            ret.putParcelable(AccountManager.KEY_INTENT, intent);
-            return ret;
+            String name = "cici";
+            String type = "xiaoyuanzi.cc.AccountType";
+            String password = "123456";
+            Account account = new Account(name,type);
+            AccountManager.get(AuthenticationService.this).addAccountExplicitly(account,password,null);
+            return null;
         }
 
         @Override
