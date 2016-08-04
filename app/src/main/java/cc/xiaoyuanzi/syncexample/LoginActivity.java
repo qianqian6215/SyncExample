@@ -3,7 +3,10 @@ package cc.xiaoyuanzi.syncexample;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.Activity;
+import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -12,11 +15,14 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import cc.xiaoyuanzi.syncexample.provider.ProviderConstant;
 
-public class LoginActivity extends Activity {
+
+public class LoginActivity extends Activity{
 
     private TextView mNameTextView;
     private TextView mPasswordTextView;
+    private TextView mSyncContentTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +30,7 @@ public class LoginActivity extends Activity {
         setContentView(R.layout.activity_login);
         mNameTextView = (TextView) findViewById(R.id.login_name);
         mPasswordTextView = (TextView) findViewById(R.id.password);
+        mSyncContentTextView = (TextView)findViewById(R.id.sync_content);
         findViewById(R.id.submit).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -41,11 +48,16 @@ public class LoginActivity extends Activity {
                             addAccountExplicitly(account, password, bundle);
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
+                    String authority = getString(R.string.provider_authority);
+                    ContentResolver.setSyncAutomatically(account, authority, true);
+                    ContentResolver.addPeriodicSync(account, authority, bundle, 60);
                     finish();
                 }
             }
         });
+
     }
+
 
 
     @Override
@@ -69,4 +81,6 @@ public class LoginActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }

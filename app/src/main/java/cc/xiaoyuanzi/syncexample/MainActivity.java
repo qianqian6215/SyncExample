@@ -3,19 +3,24 @@ package cc.xiaoyuanzi.syncexample;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import cc.xiaoyuanzi.syncexample.provider.ProviderConstant;
 
-public class MainActivity extends Activity {
+
+public class MainActivity extends Activity implements SharedPreferences.OnSharedPreferenceChangeListener{
 
     private View mLoginView;
     private TextView mAccountInfoView;
-    private View mSyncContentView;
+    private TextView mSyncContentView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +28,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         mLoginView = findViewById(R.id.login);
         mAccountInfoView = (TextView)findViewById(R.id.account_info);
-        mSyncContentView = findViewById(R.id.sync_content);
+        mSyncContentView = (TextView)findViewById(R.id.sync_content);
     }
 
     @Override
@@ -39,6 +44,8 @@ public class MainActivity extends Activity {
             //now we only use the first account
             mAccountInfoView.setText("Hello, "+accounts[0].name);
             mLoginView.setVisibility(View.GONE);
+            updateSyncContent();
+            getPreference().registerOnSharedPreferenceChangeListener(this);
         } else {
             mAccountInfoView.setText(R.string.no_account);
             mLoginView.setVisibility(View.VISIBLE);
@@ -52,12 +59,32 @@ public class MainActivity extends Activity {
         }
     }
 
+    private SharedPreferences getPreference() {
+        return getSharedPreferences
+                (ProviderConstant.KEY_PREFRENCE_NAME, Context.MODE_PRIVATE);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+        Log.d("eeee","onSharedPreferenceChanged");
+        updateSyncContent();
+    }
+
+    @Override
+    protected void onDestroy() {
+        getPreference().unregisterOnSharedPreferenceChangeListener(this);
+        super.onDestroy();
+    }
+
+    private void updateSyncContent() {
+        mSyncContentView.setText(getPreference().getString(ProviderConstant.KEY_TEST_PREFRENCE_DATA,""));
     }
 
     @Override

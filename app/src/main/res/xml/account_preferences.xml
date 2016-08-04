@@ -1,6 +1,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <PreferenceCategory>
-
-    </PreferenceCategory>
+    <PreferenceCategory
+        android:key = "account_name_address"
+        android:title="@string/login_name">
+        </PreferenceCategory>
 
 </PreferenceScreen>
