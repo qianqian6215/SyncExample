@@ -3,6 +3,7 @@ package cc.xiaoyuanzi.syncexample.provider;
 import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
@@ -31,18 +32,15 @@ public class XiaoYuanZiContentProvider extends ContentProvider {
 
     @Override
     public Uri insert(Uri uri, ContentValues values) {
-        //TODO
+
 
         //throw new UnsupportedOperationException("Not yet implemented");
         SharedPreferences xiaoyuanzi_test = getContext().
                 getSharedPreferences(ProviderConstant.KEY_PREFRENCE_NAME, Context.MODE_PRIVATE);
-        String string = xiaoyuanzi_test.getString(ProviderConstant.KEY_TEST_PREFRENCE_DATA, "");
-        String newString = string.concat("\n").concat(values.getAsString(ProviderConstant.KEY_SYNC_TIME))
-                .concat(":    ").concat(values.getAsString(ProviderConstant.KEY_SYNC_CONTENT));
+        String newString = values.getAsString(ProviderConstant.KEY_SYNC_TIME);
         SharedPreferences.Editor edit = xiaoyuanzi_test.edit();
         edit.putString(ProviderConstant.KEY_TEST_PREFRENCE_DATA, newString);
-        Log.d("eeee","insert new string "+string);
-        edit.commit();
+        Log.d("eeee", "insert new string " + newString);
         edit.apply();
 
         return null;

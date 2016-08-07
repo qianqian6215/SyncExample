@@ -80,6 +80,15 @@
             </meta-data>
         </service>
 
+        <service
+            android:name=".sync.data.DownloadService"
+            android:enabled="true"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="com.dw.android.intent.DOWNLOAD" />
+                <!-- Required  用户注册SDK的intent -->
+            </intent-filter>
+        </service>
 
     </application>
 

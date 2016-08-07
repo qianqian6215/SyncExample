@@ -22,7 +22,6 @@ public class LoginActivity extends Activity{
 
     private TextView mNameTextView;
     private TextView mPasswordTextView;
-    private TextView mSyncContentTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +29,6 @@ public class LoginActivity extends Activity{
         setContentView(R.layout.activity_login);
         mNameTextView = (TextView) findViewById(R.id.login_name);
         mPasswordTextView = (TextView) findViewById(R.id.password);
-        mSyncContentTextView = (TextView)findViewById(R.id.sync_content);
         findViewById(R.id.submit).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

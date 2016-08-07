@@ -29,10 +29,21 @@
             android:layout_alignParentRight="true" />
 
     </RelativeLayout>
-
     <TextView
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/sync_content"
-        android:layout_below="@id/account_info" />
+        android:id="@+id/sync_time"
+        android:textSize="25sp"
+       />
+
+    <!--<TextView-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/sync_content"-->
+        <!--android:layout_below="@id/account_info" />-->
+    <ViewFlipper
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id ="@+id/view_flipper"
+        ></ViewFlipper>
 </LinearLayout>
